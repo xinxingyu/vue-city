@@ -5,18 +5,16 @@
 </p>
 > 维护人：辛星宇 ♏️  
 
-### git地址
-* [defed-vue-city](https://git.xiaojukeji.com/bufe/defed-vue-city)
 
 ### 安装
 
-`npm install defed-vue-city --save`
+`npm install xin-vue-city --save`
 
 ### 使用DEMO
 
 ```shell
-	git clone git@git.xiaojukeji.com:bufe/defed-vue-city.git
-	cd defed-vue-city
+	git clone .....
+	cd xin-vue-city
 	npm install
 	npm run dev
 ```
@@ -47,7 +45,7 @@
 ```
 
 ```javascript
-	import city from 'defed-vue-city';
+	import city from 'xin-vue-city';
 
     export default {
         data(){
