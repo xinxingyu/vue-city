@@ -5,6 +5,10 @@
 </p>
 > author: 辛星宇  
 
+### 展示
+<div>
+	<img src="https://github.com/xinxingyu/vue-city/blob/master/static/img/intro1.jpg">
+<div>
 
 ### 安装
 
