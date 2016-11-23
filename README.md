@@ -7,7 +7,8 @@
 
 ### 展示
 <div>
-	<img src="https://github.com/xinxingyu/vue-city/blob/master/static/img/intro1.jpg">
+	<img width="300px" src="https://github.com/xinxingyu/vue-city/blob/master/static/img/intro1.jpg">
+	<img width="300px" style="margin-left:20px;" src="https://github.com/xinxingyu/vue-city/blob/master/static/img/intro2.jpg">
 <div>
 
 ### 安装
