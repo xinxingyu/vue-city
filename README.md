@@ -3,20 +3,18 @@
     <img height="18" src="https://img.shields.io/badge/UI-v5.0-ff69b4.svg">
     <img height="18" src="https://img.shields.io/badge/npm-v0.2.2-blue.svg">
 </p>
-> 维护人：辛星宇 ♏️  
+> author: 辛星宇  
 
-### git地址
-* [defed-vue-city](https://git.xiaojukeji.com/bufe/defed-vue-city)
 
 ### 安装
 
-`npm install defed-vue-city --save`
+`npm install vue-city --save`
 
 ### 使用DEMO
 
 ```shell
-	git clone git@git.xiaojukeji.com:bufe/defed-vue-city.git
-	cd defed-vue-city
+	git clone .......
+	cd vue-city
 	npm install
 	npm run dev
 ```
@@ -29,25 +27,25 @@
 	    <div id="app">
 	        <city
 	            :is-show.sync='city.isShow'
-	            :on-choose.sync='city.onChoose'
-	            :city-data.sync='city.cityData'
-	            :local-city.sync='city.localCity'
-	            :star-city.sync='city.starCity'
+	            :on-choose='city.onChoose'
+	            :city-data='city.cityData'
+	            :local-city='city.localCity'
+	            :star-city='city.starCity'
 	            ></city>
 	        <city
 				:simple='true'
 	            :is-show.sync='city2.isShow'
-	            :on-choose.sync='city2.onChoose'
-	            :city-data.sync='city2.cityData'
-	            :local-city.sync='city2.localCity'
-	            :star-city.sync='city2.starCity'
+	            :on-choose='city2.onChoose'
+	            :city-data='city2.cityData'
+	            :local-city='city2.localCity'
+	            :star-city='city2.starCity'
 	            ></city>
 	    </div>
 	</div>
 ```
 
 ```javascript
-	import city from 'defed-vue-city';
+	import city from 'vue-city';
 
     export default {
         data(){
@@ -212,14 +210,5 @@
 ```
 
 ### 版本升级
-#### 0.1.0
-* 基本功能实现
-
 #### 0.2.0
-* 试驾5.0规范（热门城市不能使用）
-
-#### 0.2.2
-* 添加热门城市 && 修改动画BUG
-
-#### 0.2.3
-* 添加 simple 模式 （没有字母排序的）
+* 基本功能实现

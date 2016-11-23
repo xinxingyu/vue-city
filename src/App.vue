@@ -4,18 +4,18 @@
     <div id="app">
         <city
             :is-show.sync='city.isShow'
-            :on-choose.sync='city.onChoose'
-            :city-data.sync='city.cityData'
-            :local-city.sync='city.localCity'
-            :star-city.sync='city.starCity'
+            :on-choose='city.onChoose'
+            :city-data='city.cityData'
+            :local-city='city.localCity'
+            :star-city='city.starCity'
             ></city>
         <city
 			:simple='true'
             :is-show.sync='city2.isShow'
-            :on-choose.sync='city2.onChoose'
-            :city-data.sync='city2.cityData'
-            :local-city.sync='city2.localCity'
-            :star-city.sync='city2.starCity'
+            :on-choose='city2.onChoose'
+            :city-data='city2.cityData'
+            :local-city='city2.localCity'
+            :star-city='city2.starCity'
             ></city>
     </div>
 </template>
