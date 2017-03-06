@@ -12,8 +12,10 @@
 <p>
 
 ### 安装
-
-`npm install vue-city --save`
+> vue1.x 版
+`npm install vue-city@1.0.0`
+> vue2.x 版
+`npm install vue-city@2.0.0`
 
 ### 使用DEMO
 
