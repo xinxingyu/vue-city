@@ -1,7 +1,7 @@
 ## 城市选择器
 <p>
     <img height="18" src="https://img.shields.io/badge/UI-v5.0-ff69b4.svg">
-    <img height="18" src="https://img.shields.io/badge/npm-v0.2.2-blue.svg">
+    <img height="18" src="https://img.shields.io/badge/npm-v2.0.0-blue.svg">
 </p>
 > author: xinxingyu  
 
