@@ -1,6 +1,6 @@
 <template>
-    <slot></slot>
-    <div class="xin-widget-citys animated" v-if="isShow" transition="citySlide">
+	<transition name="slide">
+    <div class="xin-widget-citys animated" v-if="isShow">
         <div class="xin-widget-citys-content">
             <div class="xin-widget-citys-header bdb">
                 <div class="xin-widget-citys-iptbox">
@@ -11,14 +11,14 @@
             <div class="xin-widget-citys-local bdb">当前城市：{{localCity.cityName || "无法定位当前城市"}}</div>
             <div class="xin-widget-citys-list" v-if="input == ''">
                 <dl>
-                    <template v-for="(index, item) in letterList">
+                    <template v-for="(item, index) in letterList">
                         <template v-if="index == 'star'">
                             <dt><em class="star-big"></em>热门城市</dt>
                         </template>
                         <template v-else>
                             <dt v-if="isNaN(index)">{{index}}</dt>
                         </template>
-                        <template v-for="(k, item2) in item">
+                        <template v-for="(item2, key) in item">
                             <dd class="bdb" @click="_chooseOne(item2)">{{item2.cityName}}</dd>
                         </template>
                     </template>
@@ -31,16 +31,16 @@
                 <div v-else class="nomatch">没有匹配城市</div>
             </div>
         </div>
+		<div class="xin-widget-citys-letnav" v-if="isShow && input == '' && !simple" @touchmove="_touchLetters">
+	        <ol>
+	            <template v-for="(item, index) in letterList">
+	                <li v-if="isNaN(index) && index=='star'" @click="_chooseLetter" data-type="starCity"><em class='star-small' data-type="starCity"></em></li>
+	                <li v-else @click="_chooseLetter" data-type="letter">{{index}}</li>
+	            </template>
+	        </ol>
+	    </div>
     </div>
-    <div class="xin-widget-citys-letnav" v-if="isShow && input == '' && !simple" @touchmove="_touchLetters">
-        <ol>
-            <template v-for="(index, item) in letterList">
-                <li v-if="isNaN(index) && index=='star'" @click="_chooseLetter" data-type="starCity"><em class='star-small' data-type="starCity"></em></li>
-                <li v-else @click="_chooseLetter" data-type="letter">{{index}}</li>
-            </template>
-                <!-- <li v-if="isNaN(index)" v-for="(index, item) in letterList" @click="_chooseLetter">{{index}}</li> -->
-        </ol>
-    </div>
+	</transition>
 </template>
 
 <script>
@@ -74,6 +74,12 @@
     			type: Function,
                 default: null
     		},
+			/**
+			 * call back when click cancel button
+			 */
+			close: {
+				type: Function
+			}
         },
         data: function(){
             return {
@@ -110,12 +116,13 @@
         },
         methods: {
             show: function() {
-                this.isShow = true;
+                // this.isShow = true;
             },
             hide: function() {
-                this.isShow = false;
+                // this.isShow = false;
                 this.input = '';
                 this.searchList = [];
+				this.close && this.close()
             },
             _chooseDefault: function() {
                 let _this = this;
@@ -251,7 +258,6 @@
                         letterArr[i] = [];
                         letterArr[i].push(arr[i]);
                     }
-
 				}else{
 					// 添加热门城市
 					if(this.starCity && this.starCity.length > 0){
@@ -264,7 +270,6 @@
 							}else{
 								letterArr['star'].unshift(value)
 							}
-
 						})
 					}
 	                for (var i = 0; i < arr.length; i++) {
@@ -276,12 +281,11 @@
 	                    }
 	                }
 				}
-
                 this.letterList = letterArr;
             },
             _chooseOne: function(obj) {
                 this.onChoose && this.onChoose(JSON.parse(JSON.stringify(obj)));
-                this.hide();
+                // this.hide();
             }
         }
     }
@@ -294,8 +298,6 @@
         display: none;
     }
     .xin-widget-citys{
-        -webkit-transform: translateX(100%) translateZ(0);
-	    transform: translateX(100%) translateZ(0);
         -webkit-transition: all .2s ease-out;
         transition: all .2s ease-out;
 
@@ -381,7 +383,7 @@
             }
         }
         .xin-widget-citys-searchlist{
-            position: fixed;
+            position: absolute;
             top: 0.4rem;
             width: 100%;
             bottom: 0;
@@ -454,14 +456,20 @@
             }
         }
     }
-    .citySlide-transition{
-       transform: translateX(0) translateZ(0);
-       -webkit-transform: translateX(0) translateZ(0);
-    }
-    .citySlide-enter, .citySlide-leave{
-       transform: translateX(100%) translateZ(0);
-       -webkit-transform: translateX(100%) translateZ(0);
-    }
+    // .citySlide-transition{
+    //    transform: translateX(0) translateZ(0);
+    //    -webkit-transform: translateX(0) translateZ(0);
+    // }
+    // .slide-enter, .slide-leave-active{
+    //    transform: translateX(100%) translateZ(0);
+    //    -webkit-transform: translateX(100%) translateZ(0);
+    // }
+	.slide-enter, .slide-leave-active{
+		transform: translateX(100%)!important;
+	}
+	.fade-enter, .fade-leave-active{
+		opacity: 0;
+	}
     .star-big{
         width: 0.14rem;
         height: 0.14rem;

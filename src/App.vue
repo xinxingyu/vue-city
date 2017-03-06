@@ -1,13 +1,14 @@
 <template>
-    <div class="choice" @click="choiceCity()">{{youChoiceCityName}}</div>
-    <div class="choice" @click="choiceCity2()">{{youChoiceCityName2}}</div>
     <div id="app">
+		<div class="choice" @click="choiceCity()">{{youChoiceCityName}}</div>
+	    <div class="choice" @click="choiceCity2()">{{youChoiceCityName2}}</div>
         <city
             :is-show.sync='city.isShow'
             :on-choose='city.onChoose'
             :city-data='city.cityData'
             :local-city='city.localCity'
             :star-city='city.starCity'
+			:close="close"
             ></city>
         <city
 			:simple='true'
@@ -16,6 +17,7 @@
             :city-data='city2.cityData'
             :local-city='city2.localCity'
             :star-city='city2.starCity'
+			:close="close"
             ></city>
     </div>
 </template>
@@ -49,17 +51,19 @@
         components: {
             city,
         },
-        ready(){
+        mounted(){
             let _this = this;
             this.getCityInfo();
             this.city.onChoose = function(res){
                 //ToDo: 选完城市后......
                 console.log(res);
+				_this.city.isShow = false;
                 _this.youChoiceCityName = '你选的城市是：' + res.cityName;
             }
             this.city2.onChoose = function(res){
                 //ToDo: 选完城市后......
                 console.log(res);
+				_this.city2.isShow = false;
                 _this.youChoiceCityName2 = '你选的城市是：' + res.cityName;
             }
         },
@@ -535,6 +539,10 @@
             },
 			choiceCity2 () {
 				this.city2.isShow = true;
+			},
+			close(){
+				this.city.isShow = false;
+				this.city2.isShow = false;
 			}
         }
     }

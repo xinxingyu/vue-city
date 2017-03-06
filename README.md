@@ -3,7 +3,7 @@
     <img height="18" src="https://img.shields.io/badge/UI-v5.0-ff69b4.svg">
     <img height="18" src="https://img.shields.io/badge/npm-v0.2.2-blue.svg">
 </p>
-> author: 辛星宇  
+> author: xinxingyu  
 
 ### 展示
 <p>
@@ -36,6 +36,7 @@
 	            :city-data='city.cityData'
 	            :local-city='city.localCity'
 	            :star-city='city.starCity'
+				:close="close"
 	            ></city>
 	        <city
 				:simple='true'
@@ -44,6 +45,7 @@
 	            :city-data='city2.cityData'
 	            :local-city='city2.localCity'
 	            :star-city='city2.starCity'
+				:close="close"
 	            ></city>
 	    </div>
 	</div>
@@ -82,11 +84,13 @@
             this.city.onChoose = function(res){
                 //ToDo: 选完城市后......
                 console.log(res);
+				_this.city.isShow = false;
                 _this.youChoiceCityName = '你选的城市是：' + res.cityName;
             }
 			this.city2.onChoose = function(res){
                 //ToDo: 选完城市后......
                 console.log(res);
+				_this.city2.isShow = false;
                 _this.youChoiceCityName2 = '你选的城市是：' + res.cityName;
             }
         },
@@ -145,6 +149,10 @@
             },
 			choiceCity2 () {
 				this.city2.isShow = true;
+			},
+			close(){
+				this.city.isShow = false;
+				this.city2.isShow = false;
 			}
         }
     }
@@ -159,6 +167,7 @@
 |city-data|城市列表数据|Array|数据格式参考`附录`|是|
 |local-city|当前城市</br>(根据 lat, lng 参数从接口获取)|Object|数据格式参考`附录`|是|
 |star-city|热门城市</br>|Object|数据格式参考`附录`|否|
+|close|点击取消的 handle</br>可在handle中设置show=false来关闭component|Function|-|是|
 |on-choose|选中某个城市后的 handle</br>返回一个 Object 对象|Function|-|是|
 
 > 附录
@@ -217,3 +226,7 @@
 ### 版本升级
 #### 0.2.0
 * 基本功能实现
+#### 1.0.0
+* vue1.x 版
+#### 2.0.0
+* vue2.x 版
